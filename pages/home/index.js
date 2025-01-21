@@ -1,12 +1,15 @@
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Observer, SplitText } from 'gsap/all'
+//import DrawSVGPlugin from 'gsap/DrawSVGPlugin'
 import Swiper from 'swiper'
 import { Pagination } from 'swiper/modules'
 
+
 function init() {
-	console.log('init')
 	gsap.registerPlugin(ScrollTrigger, SplitText)
+	//console.log("DrawSVGPlugin зарегистрирован: ", gsap.plugins.DrawSVGPlugin !== undefined);
+
 	const adaptive = gsap.matchMedia()
 
 	// Menu burger
@@ -60,7 +63,6 @@ function init() {
 				start: 'top top',
 				end: 'bottom-=20% bottom',
 				scrub: 2,
-				// markers: true,
 			},
 		})
 		introTl.to('.intro_gallery', {
@@ -415,6 +417,29 @@ function init() {
 						opacity: 1,
 						duration: 1,
 					})
+					gsap.to(
+						'.services_04-flex',
+						{
+							x: '0%',
+							y: '0%',
+							opacity: 1,
+							duration: 1,
+						},
+						'<'
+					)
+					gsap.fromTo(
+						'.services_04_cta-lottie',
+						{
+							opacity: 0,
+							x: '-100%',
+						},
+						{
+							opacity: 1,
+							x: '0%',
+							duration: 1,
+							delay: 1,
+						}
+					)
 				},
 				onLeave: function () {
 					// Когда уходим из триггера (скроллим вниз)
@@ -433,6 +458,29 @@ function init() {
 						opacity: 1,
 						duration: 1,
 					})
+					gsap.to(
+						'.services_04-flex',
+						{
+							x: '0%',
+							y: '0%',
+							opacity: 1,
+							duration: 1,
+						},
+						'<'
+					)
+					gsap.fromTo(
+						'.services_04_cta-lottie',
+						{
+							opacity: 0,
+							x: '-100%',
+						},
+						{
+							opacity: 1,
+							x: '0%',
+							duration: 1,
+							delay: 2,
+						}
+					)
 				},
 				onLeaveBack: function () {
 					// Когда уходим с триггера при скроллинге вверх (элемент исчезает)
@@ -1169,6 +1217,19 @@ function init() {
 						y: '0%',
 						duration: 1,
 					})
+					gsap.fromTo(
+						'.services_04_cta-lottie',
+						{
+							opacity: 0,
+							x: '-100%',
+						},
+						{
+							opacity: 1,
+							x: '0%',
+							duration: 1,
+							delay: 2,
+						}
+					)
 				},
 				onLeave: function () {
 					// Когда уходим из триггера (скроллим вниз)
@@ -1187,6 +1248,19 @@ function init() {
 						opacity: 1,
 						duration: 1,
 					})
+					gsap.fromTo(
+						'.services_04_cta-lottie',
+						{
+							opacity: 0,
+							x: '-100%',
+						},
+						{
+							opacity: 1,
+							x: '0%',
+							duration: 1,
+							delay: 2,
+						}
+					)
 				},
 				onLeaveBack: function () {
 					// Когда уходим с триггера при скроллинге вверх (элемент исчезает)
@@ -1633,5 +1707,10 @@ function init() {
 		)
 	})
 }
-
+/*
+function animateSvgPath() {
+	console.log("Анимация SVG path запущена");
+	gsap.fromTo(".cta_arrow_svg-path", {drawSVG: "0%"}, {duration: 5, drawSVG: "100%", repeat: -1});
+}
+*/
 document.addEventListener('DOMContentLoaded', init)

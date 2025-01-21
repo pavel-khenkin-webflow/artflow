@@ -12,7 +12,7 @@
   "homepage": "https://github.com/pavel-khenkin-webflow/artflow#readme",
   "dependencies": {
     "gh-pages": "^5.0.0",
-    "gsap": "npm:@gsap/shockingly@^3.12.5",
+    "gsap": "npm:@gsap/shockingly@^3.12.7",
     "swiper": "^11.1.12"
   },
   "devDependencies": {
