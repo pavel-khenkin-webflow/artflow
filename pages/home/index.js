@@ -1,14 +1,15 @@
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Observer, SplitText } from 'gsap/all'
-//import DrawSVGPlugin from 'gsap/DrawSVGPlugin'
+import DrawSVGPlugin from 'gsap/DrawSVGPlugin'
 import Swiper from 'swiper'
 import { Pagination } from 'swiper/modules'
 
 
 function init() {
-	gsap.registerPlugin(ScrollTrigger, SplitText)
-	//console.log("DrawSVGPlugin зарегистрирован: ", gsap.plugins.DrawSVGPlugin !== undefined);
+	gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin)
+	console.log("DrawSVGPlugin зарегистрирован: ", gsap.plugins.DrawSVGPlugin !== undefined);
+	animateSvgPath()
 
 	const adaptive = gsap.matchMedia()
 
@@ -428,7 +429,7 @@ function init() {
 						'<'
 					)
 					gsap.fromTo(
-						'.services_04_cta-lottie',
+						'.services_04__cta',
 						{
 							opacity: 0,
 							x: '-100%',
@@ -438,6 +439,16 @@ function init() {
 							x: '0%',
 							duration: 1,
 							delay: 1,
+						}
+					)
+					gsap.to(
+						'.services_04-cta-title',
+						{
+							textShadow: '0 0 1em #fff',
+							scale: 1.1,
+							repeat: -1,
+							yoyo: true,
+							duration: 0.8,
 						}
 					)
 				},
@@ -469,7 +480,7 @@ function init() {
 						'<'
 					)
 					gsap.fromTo(
-						'.services_04_cta-lottie',
+						'.services_04__cta',
 						{
 							opacity: 0,
 							x: '-100%',
@@ -1218,7 +1229,7 @@ function init() {
 						duration: 1,
 					})
 					gsap.fromTo(
-						'.services_04_cta-lottie',
+						'.services_04__cta',
 						{
 							opacity: 0,
 							x: '-100%',
@@ -1228,6 +1239,16 @@ function init() {
 							x: '0%',
 							duration: 1,
 							delay: 2,
+						}
+					)
+					gsap.to(
+						'.services_04-cta-title',
+						{
+							textShadow: '0 0 1em #fff',
+							scale: 1.1,
+							repeat: -1,
+							yoyo: true,
+							duration: 0.8,
 						}
 					)
 				},
@@ -1249,7 +1270,7 @@ function init() {
 						duration: 1,
 					})
 					gsap.fromTo(
-						'.services_04_cta-lottie',
+						'.services_04__cta',
 						{
 							opacity: 0,
 							x: '-100%',
@@ -1707,10 +1728,14 @@ function init() {
 		)
 	})
 }
-/*
+
 function animateSvgPath() {
-	console.log("Анимация SVG path запущена");
-	gsap.fromTo(".cta_arrow_svg-path", {drawSVG: "0%"}, {duration: 5, drawSVG: "100%", repeat: -1});
+    console.log("Анимация SVG path запущена");
+    const path = document.querySelector("#svgtestpath");
+    const length = path.getTotalLength();
+	console.log("Lenght is:",length);
+    gsap.set(path, {strokeDasharray: length, strokeDashoffset: length});
+    gsap.to(path, {duration: 5, strokeDashoffset: 0, repeat: -1});
 }
-*/
+
 document.addEventListener('DOMContentLoaded', init)
