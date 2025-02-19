@@ -9,7 +9,6 @@ import { Pagination } from 'swiper/modules'
 function init() {
 	gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin)
 	console.log("DrawSVGPlugin зарегистрирован: ", gsap.plugins.DrawSVGPlugin !== undefined);
-	animateSvgPath()
 
 	const adaptive = gsap.matchMedia()
 
@@ -408,7 +407,6 @@ function init() {
 				scrollTrigger: {
 					trigger: '.services_point-04',
 					start: 'top top',
-					markers: true,
 					end: 'bottom top',
 					scrub: 1,
 					onEnter: function () {
@@ -1221,7 +1219,6 @@ function init() {
 				scrollTrigger: {
 					trigger: '.services_point-04',
 					start: 'top top',
-					markers: true,
 					end: 'bottom-=50% top',
 					scrub: true,
 					invalidateOnRefresh: false,
@@ -1795,15 +1792,6 @@ function init() {
 	  });
 	}
 	
-}
-
-function animateSvgPath() {
-    console.log("Анимация SVG path запущена");
-    const path = document.querySelector("#svgtestpath");
-    const length = path.getTotalLength();
-	console.log("Lenght is:",length);
-    gsap.set(path, {strokeDasharray: length, strokeDashoffset: length});
-    gsap.to(path, {duration: 5, strokeDashoffset: 0, repeat: -1});
 }
 
 document.addEventListener('DOMContentLoaded', init)
