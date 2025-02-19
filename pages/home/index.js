@@ -403,118 +403,120 @@ function init() {
 		)
 
 		// services 04
+			
+			const point04 = gsap.timeline({
+				scrollTrigger: {
+					trigger: '.services_point-04',
+					start: 'top top',
+					markers: true,
+					end: 'bottom top',
+					scrub: 1,
+					onEnter: function () {
+						// Когда триггер активируется при скролле вниз
+						gsap.to('.services_04', {
+							x: '0%',
+							y: '0%',
+							opacity: 1,
+							duration: 1,
+						})
+						gsap.to('.services_04-flex', {
+							x: '0%',
+							y: '0%',
+							opacity: 1,
+							duration: 1,
+						})
+						// gsap.fromTo(
+						// 	'.services_04__cta',
+						// 	{
+						// 		opacity: 0,
+						// 		x: '-100%',
+						// 	},
+						// 	{
+						// 		opacity: 1,
+						// 		x: '0%',
+						// 		duration: 1,
+						// 		delay: 1,
+						// 	}
+						// )
+						gsap.to(
+							'.services_04-cta-title',
+							{
+								textShadow: '0 0 1em #fff',
+								scale: 1.1,
+								repeat: -1,
+								yoyo: true,
+								duration: 0.8,
+							}
+						)
+					},
+					onLeave: function () {
+						// Когда уходим из триггера (скроллим вниз)
+						gsap.to('.services_04', {
+							x: '50%',
+							y: '50%',
+							opacity: 0,
+							duration: 1,
+						})
+					},
+					onEnterBack: function () {
+						// Когда возвращаемся к триггеру при скроллинге вверх
+						gsap.to('.services_04', {
+							x: '0%',
+							y: '0%',
+							opacity: 1,
+							duration: 1,
+						})
+						gsap.to(
+							'.services_04-flex',
+							{
+								x: '0%',
+								y: '0%',
+								opacity: 1,
+								duration: 1,
+							},
+							'<'
+						)
+						// gsap.fromTo(
+						// 	'.services_04__cta',
+						// 	{
+						// 		opacity: 0,
+						// 		x: '-100%',
+						// 	},
+						// 	{
+						// 		opacity: 1,
+						// 		x: '0%',
+						// 		duration: 1,
+						// 		delay: 2,
+						// 	}
+						// )
+					},
+					onLeaveBack: function () {
+						// Когда уходим с триггера при скроллинге вверх (элемент исчезает)
+						gsap.to('.services_04', {
+							x: '50%',
+							y: '50%',
+							opacity: 0,
+							duration: 1,
+						})
+					},
+				},
+			})
+			const phone04 = gsap.timeline({
+				scrollTrigger: {
+					trigger: '.services_point-04',
+					start: 'top top',
+					end: 'bottom top',
+				},
+			})
+			phone04.to('.services_04-phone-wrapp', {
+				opacity: 1,
+				duration: 1,
+			})
+			
 
-		const point04 = gsap.timeline({
-			scrollTrigger: {
-				trigger: '.services_point-04',
-				start: 'top top',
-				end: 'bottom top',
-				scrub: 1,
-				onEnter: function () {
-					// Когда триггер активируется при скролле вниз
-					gsap.to('.services_04', {
-						x: '0%',
-						y: '0%',
-						opacity: 1,
-						duration: 1,
-					})
-					gsap.to(
-						'.services_04-flex',
-						{
-							x: '0%',
-							y: '0%',
-							opacity: 1,
-							duration: 1,
-						},
-						'<'
-					)
-					gsap.fromTo(
-						'.services_04__cta',
-						{
-							opacity: 0,
-							x: '-100%',
-						},
-						{
-							opacity: 1,
-							x: '0%',
-							duration: 1,
-							delay: 1,
-						}
-					)
-					gsap.to(
-						'.services_04-cta-title',
-						{
-							textShadow: '0 0 1em #fff',
-							scale: 1.1,
-							repeat: -1,
-							yoyo: true,
-							duration: 0.8,
-						}
-					)
-				},
-				onLeave: function () {
-					// Когда уходим из триггера (скроллим вниз)
-					gsap.to('.services_04', {
-						x: '50%',
-						y: '50%',
-						opacity: 0,
-						duration: 1,
-					})
-				},
-				onEnterBack: function () {
-					// Когда возвращаемся к триггеру при скроллинге вверх
-					gsap.to('.services_04', {
-						x: '0%',
-						y: '0%',
-						opacity: 1,
-						duration: 1,
-					})
-					gsap.to(
-						'.services_04-flex',
-						{
-							x: '0%',
-							y: '0%',
-							opacity: 1,
-							duration: 1,
-						},
-						'<'
-					)
-					gsap.fromTo(
-						'.services_04__cta',
-						{
-							opacity: 0,
-							x: '-100%',
-						},
-						{
-							opacity: 1,
-							x: '0%',
-							duration: 1,
-							delay: 2,
-						}
-					)
-				},
-				onLeaveBack: function () {
-					// Когда уходим с триггера при скроллинге вверх (элемент исчезает)
-					gsap.to('.services_04', {
-						x: '50%',
-						y: '50%',
-						opacity: 0,
-						duration: 1,
-					})
-				},
-			},
-		})
-		const phone04 = gsap.timeline({
-			scrollTrigger: {
-				trigger: '.services_point-04',
-				start: 'top top',
-				end: 'bottom top',
-			},
-		})
-		phone04.to('.services_04-phone-wrapp', {
-			opacity: 1,
-			duration: 1,
-		})
+
+
+
 
 		// Определяем все элементы с классом phone-image
 		const phoneImages = document.querySelectorAll('.phone-image')
@@ -643,6 +645,10 @@ function init() {
 						x: '0%',
 						right: '-8em',
 						duration: 1,
+					})
+					gsap.to('.frames_blach_wrapper.is--04', {
+						opacity: 1,
+						duration: 0.8,
 					})
 				},
 				onLeave: function () {
@@ -1209,136 +1215,144 @@ function init() {
 		)
 
 		// services 04
+		adaptive.add('(max-width: 479px)', () => {
+			
+			const point04 = gsap.timeline({
+				scrollTrigger: {
+					trigger: '.services_point-04',
+					start: 'top top',
+					markers: true,
+					end: 'bottom-=50% top',
+					scrub: true,
+					invalidateOnRefresh: false,
+					onEnter: function () {
+						// Когда триггер активируется при скролле вниз
+						gsap.to('.services_04', {
+							opacity: 1,
+							duration: 1,
+						})
+						gsap.to('.services_04-flex', {
+							opacity: 1,
+							y: '0%',
+							duration: 1,
+						})
+	
+					},
+					onLeave: function () {
+						// Когда уходим из триггера (скроллим вниз)
+						gsap.to('.services_04-flex', {
+							opacity: 0,
+							x: '50%',
+							y: '-50%',
+							duration: 1,
+						})
+					},
+					onEnterBack: function () {
+						// Когда возвращаемся к триггеру при скроллинге вверх
+						gsap.to('.services_04-flex', {
+							x: '0%',
+							y: '0%',
+							opacity: 1,
+							duration: 1,
+						})
+	
+					},
+					onLeaveBack: function () {
+						// Когда уходим с триггера при скроллинге вверх (элемент исчезает)
+						gsap.to('.services_04-flex', {
+							y: '-100%',
+							opacity: 0,
+							duration: 1,
+						})
+					},
+				},
+			})
+	
+			const phone04 = gsap.timeline({
+				scrollTrigger: {
+					trigger: '.services_point-04',
+					start: 'top+=50% top',
+					end: 'bottom top',
+					scrub: true,
+					// invalidateOnRefresh: false,
+					onEnter: function () {
+						// Когда триггер активируется при скролле вниз
+						gsap.to('.services_04-phone-wrapp', {
+							opacity: 1,
+							y: '0%',
+							x: '-50%',
+							duration: 1,
+						})
+						// gsap.fromTo(
+						// 	'.services_04__cta',
+						// 	{
+						// 		opacity: 0,
+						// 		x: '-100%',
+						// 	},
+						// 	{
+						// 		opacity: 1,
+						// 		x: '0%',
+						// 		duration: 1,
+						// 		delay: 2,
+						// 	}
+						// )
+						gsap.to(
+							'.services_04-cta-title',
+							{
+								textShadow: '0 0 1em #fff',
+								scale: 1.1,
+								repeat: -1,
+								yoyo: true,
+								duration: 0.8,
+							}
+						)
+					},
+					onLeave: function () {
+						// Когда уходим из триггера (скроллим вниз)
+						gsap.to('.services_04-phone-wrapp', {
+							opacity: 0,
+							x: '100%',
+							y: '50%',
+							duration: 1,
+						})
+						// gsap.fromTo(
+						// 	'.services_04__cta',
+						// 	{
+						// 		opacity: 0,
+						// 		x: '-100%',
+						// 	},
+						// 	{
+						// 		opacity: 1,
+						// 		x: '0%',
+						// 		duration: 1,
+						// 		delay: 2,
+						// 	}
+						// )
+					},
+					onEnterBack: function () {
+						// Когда возвращаемся к триггеру при скроллинге вверх
+						gsap.to('.services_04-phone-wrapp', {
+							x: '-50%',
+							y: '0%',
+							opacity: 1,
+							duration: 1,
+						})
+	
+					},
+					onLeaveBack: function () {
+						// Когда уходим с триггера при скроллинге вверх (элемент исчезает)
+						gsap.to('.services_04-phone-wrapp', {
+							y: '50%',
+							x: '-100%',
+							opacity: 0,
+							duration: 1,
+						})
+					},
+				},
+			})
 
-		const point04 = gsap.timeline({
-			scrollTrigger: {
-				trigger: '.services_point-04',
-				start: 'top top',
-				end: 'bottom-=50% top',
-				scrub: true,
-				invalidateOnRefresh: false,
-				onEnter: function () {
-					// Когда триггер активируется при скролле вниз
-					gsap.to('.services_04', {
-						opacity: 1,
-						duration: 1,
-					})
-					gsap.to('.services_04-flex', {
-						opacity: 1,
-						y: '0%',
-						duration: 1,
-					})
-					gsap.fromTo(
-						'.services_04__cta',
-						{
-							opacity: 0,
-							x: '-100%',
-						},
-						{
-							opacity: 1,
-							x: '0%',
-							duration: 1,
-							delay: 2,
-						}
-					)
-					gsap.to(
-						'.services_04-cta-title',
-						{
-							textShadow: '0 0 1em #fff',
-							scale: 1.1,
-							repeat: -1,
-							yoyo: true,
-							duration: 0.8,
-						}
-					)
-				},
-				onLeave: function () {
-					// Когда уходим из триггера (скроллим вниз)
-					gsap.to('.services_04-flex', {
-						opacity: 0,
-						x: '50%',
-						y: '-50%',
-						duration: 1,
-					})
-				},
-				onEnterBack: function () {
-					// Когда возвращаемся к триггеру при скроллинге вверх
-					gsap.to('.services_04-flex', {
-						x: '0%',
-						y: '0%',
-						opacity: 1,
-						duration: 1,
-					})
-					gsap.fromTo(
-						'.services_04__cta',
-						{
-							opacity: 0,
-							x: '-100%',
-						},
-						{
-							opacity: 1,
-							x: '0%',
-							duration: 1,
-							delay: 2,
-						}
-					)
-				},
-				onLeaveBack: function () {
-					// Когда уходим с триггера при скроллинге вверх (элемент исчезает)
-					gsap.to('.services_04-flex', {
-						y: '-100%',
-						opacity: 0,
-						duration: 1,
-					})
-				},
-			},
 		})
 
-		const phone04 = gsap.timeline({
-			scrollTrigger: {
-				trigger: '.services_point-04',
-				start: 'top+=50% top',
-				end: 'bottom top',
-				scrub: true,
-				// invalidateOnRefresh: false,
-				onEnter: function () {
-					// Когда триггер активируется при скролле вниз
-					gsap.to('.services_04-phone-wrapp', {
-						opacity: 1,
-						y: '0%',
-						x: '-50%',
-						duration: 1,
-					})
-				},
-				onLeave: function () {
-					// Когда уходим из триггера (скроллим вниз)
-					gsap.to('.services_04-phone-wrapp', {
-						opacity: 0,
-						x: '100%',
-						y: '50%',
-						duration: 1,
-					})
-				},
-				onEnterBack: function () {
-					// Когда возвращаемся к триггеру при скроллинге вверх
-					gsap.to('.services_04-phone-wrapp', {
-						x: '-50%',
-						y: '0%',
-						opacity: 1,
-						duration: 1,
-					})
-				},
-				onLeaveBack: function () {
-					// Когда уходим с триггера при скроллинге вверх (элемент исчезает)
-					gsap.to('.services_04-phone-wrapp', {
-						y: '50%',
-						x: '-100%',
-						opacity: 0,
-						duration: 1,
-					})
-				},
-			},
-		})
 
 		// Определяем все элементы с классом phone-image
 		const phoneImages = document.querySelectorAll('.phone-image')
@@ -1727,6 +1741,60 @@ function init() {
 			0
 		)
 	})
+
+	// Features flip card animation
+	const cards = document.querySelectorAll('.features_card');
+
+	let isReversing = false;         // Идет ли обратная анимация
+	let hoveredCard = null;         // Карточка, над которой сейчас курсор
+	let activeTimeline = null;      // Активный таймлайн
+	
+	cards.forEach((card) => {
+	  const slideInner = card.querySelector('.slide_inner');
+	
+	  card.addEventListener('mouseenter', () => {
+		hoveredCard = card;
+	
+		// Если идет обратная анимация - ждем её завершения
+		if (isReversing) return;
+	
+		// Если анимация уже активна для этой карточки - не запускаем повторно
+		if (activeTimeline && activeTimeline.card === card) return;
+	
+		startFlipAnimation(card, slideInner);
+	  });
+	
+	  card.addEventListener('mouseleave', () => {
+		if (!activeTimeline || activeTimeline.card !== card) return;
+	
+		isReversing = true; // Блокируем новые анимации до завершения этой
+	
+		activeTimeline.reverse().eventCallback('onReverseComplete', () => {
+		  isReversing = false; // Разрешаем новые анимации
+		  activeTimeline = null;
+	
+		  // Если курсор над другой карточкой — запускаем её анимацию
+		  if (hoveredCard && hoveredCard !== card) {
+			const newSlideInner = hoveredCard.querySelector('.slide_inner');
+			startFlipAnimation(hoveredCard, newSlideInner);
+		  }
+		});
+	  });
+	});
+	
+	function startFlipAnimation(card, slideInner) {
+	  if (activeTimeline) return; // Если есть активная анимация — ждем её завершения
+	
+	  activeTimeline = gsap.timeline();
+	  activeTimeline.card = card; // Привязываем таймлайн к карточке
+	
+	  activeTimeline.to(slideInner, {
+		duration: 0.8,
+		rotateY: -180,
+		ease: 'power2.out',
+	  });
+	}
+	
 }
 
 function animateSvgPath() {
