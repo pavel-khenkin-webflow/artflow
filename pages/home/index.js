@@ -1739,58 +1739,126 @@ function init() {
 		)
 	})
 
-	// Features flip card animation
+	// // Features flip card animation
+	// const cards = document.querySelectorAll('.features_card');
+
+	// let isReversing = false;         // Идет ли обратная анимация
+	// let hoveredCard = null;         // Карточка, над которой сейчас курсор
+	// let activeTimeline = null;      // Активный таймлайн
+	
+	// cards.forEach((card) => {
+	//   const slideInner = card.querySelector('.slide_inner');
+	
+	//   card.addEventListener('mouseenter', () => {
+	// 	hoveredCard = card;
+	
+	// 	// Если идет обратная анимация - ждем её завершения
+	// 	if (isReversing) return;
+	
+	// 	// Если анимация уже активна для этой карточки - не запускаем повторно
+	// 	if (activeTimeline && activeTimeline.card === card) return;
+	
+	// 	startFlipAnimation(card, slideInner);
+	//   });
+	
+	//   card.addEventListener('mouseleave', () => {
+	// 	if (!activeTimeline || activeTimeline.card !== card) return;
+	
+	// 	isReversing = true; // Блокируем новые анимации до завершения этой
+	
+	// 	activeTimeline.reverse().eventCallback('onReverseComplete', () => {
+	// 	  isReversing = false; // Разрешаем новые анимации
+	// 	  activeTimeline = null;
+	
+	// 	  // Если курсор над другой карточкой — запускаем её анимацию
+	// 	  if (hoveredCard && hoveredCard !== card) {
+	// 		const newSlideInner = hoveredCard.querySelector('.slide_inner');
+	// 		startFlipAnimation(hoveredCard, newSlideInner);
+	// 	  }
+	// 	});
+	//   });
+	// });
+	
+	// function startFlipAnimation(card, slideInner) {
+	//   if (activeTimeline) return; // Если есть активная анимация — ждем её завершения
+	
+	//   activeTimeline = gsap.timeline();
+	//   activeTimeline.card = card; // Привязываем таймлайн к карточке
+	
+	//   activeTimeline.to(slideInner, {
+	// 	duration: 0.8,
+	// 	rotateY: -180,
+	// 	ease: 'power2.out',
+	//   });
+	// }
+
 	const cards = document.querySelectorAll('.features_card');
 
-	let isReversing = false;         // Идет ли обратная анимация
-	let hoveredCard = null;         // Карточка, над которой сейчас курсор
-	let activeTimeline = null;      // Активный таймлайн
-	
+	let isReversing = false; // Идет ли обратная анимация
+	let hoveredCard = null; // Карточка, над которой сейчас курсор
+	let activeTimeline = null; // Активный таймлайн
+
 	cards.forEach((card) => {
-	  const slideInner = card.querySelector('.slide_inner');
-	
-	  card.addEventListener('mouseenter', () => {
+	const slideInner = card.querySelector('.slide_inner');
+	const slideFront = card.querySelector('.slide_front');
+	const slideBack = card.querySelector('.slide_back');
+
+	card.addEventListener('mouseenter', () => {
 		hoveredCard = card;
-	
-		// Если идет обратная анимация - ждем её завершения
+
 		if (isReversing) return;
-	
-		// Если анимация уже активна для этой карточки - не запускаем повторно
 		if (activeTimeline && activeTimeline.card === card) return;
-	
-		startFlipAnimation(card, slideInner);
-	  });
-	
-	  card.addEventListener('mouseleave', () => {
-		if (!activeTimeline || activeTimeline.card !== card) return;
-	
-		isReversing = true; // Блокируем новые анимации до завершения этой
-	
-		activeTimeline.reverse().eventCallback('onReverseComplete', () => {
-		  isReversing = false; // Разрешаем новые анимации
-		  activeTimeline = null;
-	
-		  // Если курсор над другой карточкой — запускаем её анимацию
-		  if (hoveredCard && hoveredCard !== card) {
-			const newSlideInner = hoveredCard.querySelector('.slide_inner');
-			startFlipAnimation(hoveredCard, newSlideInner);
-		  }
-		});
-	  });
+
+		startFlipAnimation(card, slideInner, slideFront, slideBack);
 	});
-	
-	function startFlipAnimation(card, slideInner) {
-	  if (activeTimeline) return; // Если есть активная анимация — ждем её завершения
-	
-	  activeTimeline = gsap.timeline();
-	  activeTimeline.card = card; // Привязываем таймлайн к карточке
-	
-	  activeTimeline.to(slideInner, {
+
+	card.addEventListener('mouseleave', () => {
+		if (!activeTimeline || activeTimeline.card !== card) return;
+
+		isReversing = true;
+
+		activeTimeline.reverse().eventCallback('onReverseComplete', () => {
+		isReversing = false;
+		activeTimeline = null;
+
+		if (hoveredCard && hoveredCard !== card) {
+			const newSlideInner = hoveredCard.querySelector('.slide_inner');
+			const newSlideFront = hoveredCard.querySelector('.slide_front');
+			const newSlideBack = hoveredCard.querySelector('.slide_back');
+			startFlipAnimation(hoveredCard, newSlideInner, newSlideFront, newSlideBack);
+		}
+		});
+	});
+	});
+
+	function startFlipAnimation(card, slideInner, slideFront, slideBack) {
+	if (activeTimeline) return;
+
+	activeTimeline = gsap.timeline();
+	activeTimeline.card = card;
+
+	activeTimeline.to(slideInner, {
 		duration: 0.8,
 		rotateY: -180,
-		ease: 'power2.out',
-	  });
+		ease: 'power2.out'
+	}, 0)
+	.to(slideFront, {
+		duration: 0.8,
+		opacity: 0,
+		ease: 'power2.out'
+	}, 0)
+	.to(slideBack, {
+		duration: 0.8,
+		opacity: 1,
+		ease: 'power2.out'
+	}, 0);
 	}
+
+
+
+
+
+
 	
 }
 
