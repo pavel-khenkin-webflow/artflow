@@ -637,7 +637,7 @@ function init() {
 			scrollTrigger: {
 				trigger: '.section_frames',
 				start: 'top center',
-				end: 'bottom center',
+				end: 'bottom 20%',
 				onEnter: function () {
 					gsap.to('.frames_image', {
 						x: '0%',
