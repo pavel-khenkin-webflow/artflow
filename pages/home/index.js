@@ -1739,7 +1739,7 @@ function init() {
 		)
 	})
 
-	// // Features flip card animation
+	// Features flip card animation
 	// const cards = document.querySelectorAll('.features_card');
 
 	// let isReversing = false;         // Идет ли обратная анимация
@@ -1843,12 +1843,12 @@ function init() {
 		ease: 'power2.out'
 	}, 0)
 	.to(slideFront, {
-		duration: 0.8,
+		duration: 0.2,
 		opacity: 0,
 		ease: 'power2.out'
 	}, 0)
 	.to(slideBack, {
-		duration: 0.8,
+		duration: 0.2,
 		opacity: 1,
 		ease: 'power2.out'
 	}, 0);
